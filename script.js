@@ -9,13 +9,13 @@ function getComputerChoice() {
 function getResult(playerChoice, computerChoice) {
   let score;
 
-  if(playerChoice == computerChoice)
+  if(playerChoice === computerChoice)
   score = 0;
-  else if(playerChoice == 'Rock' && computerChoice == 'Scissor')
+  else if(playerChoice === 'Rock' && computerChoice === 'Scissor')
   score = 1;
-  else if(playerChoice == 'Paper' && computerChoice == 'Rock')
+  else if(playerChoice === 'Paper' && computerChoice === 'Rock')
   score = 1;
-  else if(playerChoice == 'Scissor' && computerChoice == 'Paper')
+  else if(playerChoice === 'Scissor' && computerChoice === 'Paper')
   score = 1;
   else
   score = -1;
@@ -30,12 +30,17 @@ function showResult(score, playerChoice, computerChoice) {
   const playerScoreDiv = document.getElementById('player-score')
   const computerScoreDiv = document.getElementById('computer-score')
 
-  if(score = 1)
-  resultDiv.innerText = 'You Won!'
-  else if(score = -1)
-  resultDiv.innerText = 'You Lost!'
-  else
-  resultDiv.innerText = 'Its a tie'
+  switch (score) {
+    case -1:
+      resultDiv.innerText = `You Lose!`
+      break;
+    case 0:
+      resultDiv.innerText = `It's a Draw!`
+      break;
+    case 1:
+      resultDiv.innerText = `You Win!`
+      break;
+  }
 
   handsDiv.innerText = `Player: ${playerChoice} vs Computer: ${computerChoice}`
   playerScoreDiv.innerText = `Your Score: ${totalScore['playerScore']}`
@@ -67,10 +72,12 @@ function endGame(totalScore) {
   const resultDiv = document.getElementById('result')
   const handsDiv = document.getElementById('hands')
   const playerScoreDiv = document.getElementById('player-score')
+  const computerScoreDiv = document.getElementById('computer-score')
 
   resultDiv.innerText = ''
   handsDiv.innerText = ''
   playerScoreDiv.innerText = ''
+  computerScoreDiv.innerText = ''
 }
 
 playGame()
